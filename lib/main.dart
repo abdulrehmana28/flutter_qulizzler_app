@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'question.dart';
+import 'quizbrain.dart';
 
 void main() => runApp(Quizzler());
 
@@ -29,17 +29,7 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   int questionNumber = 0;
   List<Icon> listMark = [];
-
-  List<Question> questionList = [
-    Question(
-        questionText: 'You can lead a cow down stairs but not up stairs.',
-        answerOfQuestion: false),
-    Question(
-        questionText:
-            'Approximately one quarter of human bones are in the feet.',
-        answerOfQuestion: true),
-    Question(questionText: 'A slug\'s blood is green.', answerOfQuestion: true)
-  ];
+  QuizBrain quizBrain = QuizBrain();
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +40,10 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           flex: 5,
           child: Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questionList.elementAt(questionNumber).questionText,
+                quizBrain.questionList.elementAt(questionNumber).questionText,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 25.0,
@@ -78,7 +68,9 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                if (questionList.elementAt(questionNumber).answerOfQuestion ==
+                if (quizBrain.questionList
+                        .elementAt(questionNumber)
+                        .answerOfQuestion ==
                     true) {
                   questionNumber++;
                   setState(
@@ -122,7 +114,9 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
-                if (questionList.elementAt(questionNumber).answerOfQuestion ==
+                if (quizBrain.questionList
+                        .elementAt(questionNumber)
+                        .answerOfQuestion ==
                     false) {
                   questionNumber++;
                   setState(

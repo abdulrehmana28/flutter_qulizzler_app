@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'question.dart';
+
 void main() => runApp(Quizzler());
 
 class Quizzler extends StatelessWidget {
@@ -27,11 +29,16 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   int questionNumber = 0;
   List<Icon> listMark = [];
-  List<bool> answers = [false, true, true];
-  List<String> questions = [
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.'
+
+  List<Question> questionList = [
+    Question(
+        questionText: 'You can lead a cow down stairs but not up stairs.',
+        answerOfQuestion: false),
+    Question(
+        questionText:
+            'Approximately one quarter of human bones are in the feet.',
+        answerOfQuestion: true),
+    Question(questionText: 'A slug\'s blood is green.', answerOfQuestion: true)
   ];
 
   @override
@@ -46,9 +53,9 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions.elementAt(questionNumber),
+                questionList.elementAt(questionNumber).questionText,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 25.0,
                   color: Colors.white,
                 ),
@@ -71,7 +78,8 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                if (answers.elementAt(questionNumber) == true) {
+                if (questionList.elementAt(questionNumber).answerOfQuestion ==
+                    true) {
                   questionNumber++;
                   setState(
                     () {
@@ -114,7 +122,8 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
-                if (answers.elementAt(questionNumber) == false) {
+                if (questionList.elementAt(questionNumber).answerOfQuestion ==
+                    false) {
                   questionNumber++;
                   setState(
                     () {

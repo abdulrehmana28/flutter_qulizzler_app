@@ -10,7 +10,7 @@ class Quizzler extends StatelessWidget {
         backgroundColor: Colors.grey.shade900,
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: QuizPage(),
           ),
         ),
@@ -25,6 +25,15 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  int questionNumber = 0;
+  List<Icon> listMark = [];
+  List<bool> answers = [false, true, true];
+  List<String> questions = [
+    'You can lead a cow down stairs but not up stairs.',
+    'Approximately one quarter of human bones are in the feet.',
+    'A slug\'s blood is green.'
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,7 +46,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go.',
+                questions.elementAt(questionNumber),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -49,11 +58,11 @@ class _QuizPageState extends State<QuizPage> {
         ),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(15.0),
             child: MaterialButton(
               textColor: Colors.white,
               color: Colors.green,
-              child: Text(
+              child: const Text(
                 'True',
                 style: TextStyle(
                   color: Colors.white,
@@ -62,16 +71,41 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
+                if (answers.elementAt(questionNumber) == true) {
+                  questionNumber++;
+                  setState(
+                    () {
+                      listMark.add(
+                        const Icon(
+                          Icons.check,
+                          color: Colors.green,
+                        ),
+                      );
+                    },
+                  );
+                } else {
+                  questionNumber++;
+                  setState(
+                    () {
+                      listMark.add(
+                        const Icon(
+                          Icons.close_rounded,
+                          color: Colors.red,
+                        ),
+                      );
+                    },
+                  );
+                }
               },
             ),
           ),
         ),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(15.0),
             child: MaterialButton(
               color: Colors.red,
-              child: Text(
+              child: const Text(
                 'False',
                 style: TextStyle(
                   fontSize: 20.0,
@@ -80,11 +114,39 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
+                if (answers.elementAt(questionNumber) == false) {
+                  questionNumber++;
+                  setState(
+                    () {
+                      listMark.add(
+                        const Icon(
+                          Icons.check,
+                          color: Colors.green,
+                        ),
+                      );
+                    },
+                  );
+                } else {
+                  questionNumber++;
+                  setState(
+                    () {
+                      listMark.add(
+                        const Icon(
+                          Icons.close_rounded,
+                          color: Colors.red,
+                        ),
+                      );
+                    },
+                  );
+                }
               },
             ),
           ),
         ),
         //TODO: Add a Row here as your score keeper
+        Row(
+          children: listMark,
+        ),
       ],
     );
   }

@@ -1,6 +1,6 @@
 import 'question.dart';
 
-class QuizBrain {
+class QuizBank {
   List<Question> questionList = [
     Question(
         questionText: 'Some cats are actually allergic to humans',

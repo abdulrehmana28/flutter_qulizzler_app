@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'quizbrain.dart';
+import 'quizbank.dart';
 
 void main() => runApp(Quizzler());
 
@@ -28,8 +28,8 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   int questionNumber = 0;
-  List<Icon> listMark = [];
-  QuizBrain quizBrain = QuizBrain();
+  List<Icon> markSign = [];
+  QuizBank quizBrain = QuizBank();
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,7 @@ class _QuizPageState extends State<QuizPage> {
                   questionNumber++;
                   setState(
                     () {
-                      listMark.add(
+                      markSign.add(
                         const Icon(
                           Icons.check,
                           color: Colors.green,
@@ -87,7 +87,7 @@ class _QuizPageState extends State<QuizPage> {
                   questionNumber++;
                   setState(
                     () {
-                      listMark.add(
+                      markSign.add(
                         const Icon(
                           Icons.close_rounded,
                           color: Colors.red,
@@ -121,7 +121,7 @@ class _QuizPageState extends State<QuizPage> {
                   questionNumber++;
                   setState(
                     () {
-                      listMark.add(
+                      markSign.add(
                         const Icon(
                           Icons.check,
                           color: Colors.green,
@@ -133,7 +133,7 @@ class _QuizPageState extends State<QuizPage> {
                   questionNumber++;
                   setState(
                     () {
-                      listMark.add(
+                      markSign.add(
                         const Icon(
                           Icons.close_rounded,
                           color: Colors.red,
@@ -148,7 +148,7 @@ class _QuizPageState extends State<QuizPage> {
         ),
         //TODO: Add a Row here as your score keeper
         Row(
-          children: listMark,
+          children: markSign,
         ),
       ],
     );

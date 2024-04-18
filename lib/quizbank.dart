@@ -1,6 +1,14 @@
 import 'question.dart';
 
 class QuizBank {
+  String getQuestion(int questionNumber) {
+    return questionList.elementAt(questionNumber).questionText;
+  }
+
+  bool getAnswer(int questionNumber) {
+    return questionList.elementAt(questionNumber).answerOfQuestion;
+  }
+
   List<Question> questionList = [
     Question(
         questionText: 'Some cats are actually allergic to humans',

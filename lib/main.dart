@@ -27,9 +27,10 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  int questionNumber = 0;
-  List<Icon> markSign = [];
   QuizBank quizBrain = QuizBank();
+  int questionNumber = 0;
+  bool correctAnswer = false;
+  List<Icon> markSign = [];
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.questionList.elementAt(questionNumber).questionText,
+                quizBrain.getQuestion(questionNumber),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 25.0,
@@ -68,10 +69,9 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                if (quizBrain.questionList
-                        .elementAt(questionNumber)
-                        .answerOfQuestion ==
-                    true) {
+                correctAnswer = quizBrain.getAnswer(questionNumber);
+
+                if (correctAnswer == true) {
                   questionNumber++;
                   setState(
                     () {
@@ -114,10 +114,10 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
-                if (quizBrain.questionList
-                        .elementAt(questionNumber)
-                        .answerOfQuestion ==
-                    false) {
+
+                correctAnswer = quizBrain.getAnswer(questionNumber);
+
+                if (correctAnswer == false) {
                   questionNumber++;
                   setState(
                     () {

@@ -28,7 +28,7 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   QuizBank quizBrain = QuizBank();
-  int questionNumber = 0;
+
   bool correctAnswer = false;
   List<Icon> markSign = [];
 
@@ -44,7 +44,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.getQuestion(questionNumber),
+                quizBrain.getQuestion(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 25.0,
@@ -69,10 +69,10 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                correctAnswer = quizBrain.getAnswer(questionNumber);
+                correctAnswer = quizBrain.getAnswer();
 
                 if (correctAnswer == true) {
-                  questionNumber++;
+                  quizBrain.nextQuestion();
                   setState(
                     () {
                       markSign.add(
@@ -84,7 +84,7 @@ class _QuizPageState extends State<QuizPage> {
                     },
                   );
                 } else {
-                  questionNumber++;
+                  quizBrain.nextQuestion();
                   setState(
                     () {
                       markSign.add(
@@ -115,10 +115,10 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 //The user picked false.
 
-                correctAnswer = quizBrain.getAnswer(questionNumber);
+                correctAnswer = quizBrain.getAnswer();
 
                 if (correctAnswer == false) {
-                  questionNumber++;
+                  quizBrain.nextQuestion();
                   setState(
                     () {
                       markSign.add(
@@ -130,7 +130,7 @@ class _QuizPageState extends State<QuizPage> {
                     },
                   );
                 } else {
-                  questionNumber++;
+                  quizBrain.nextQuestion();
                   setState(
                     () {
                       markSign.add(

@@ -1,21 +1,19 @@
 import 'question.dart';
 
 class QuizBank {
-  int questionNumber = 0;
+  int _questionNumber = 0;
 
   String getQuestion() {
-    return _questionList.elementAt(nextQuestion()).questionText;
+    return _questionList.elementAt(_questionNumber).questionText;
   }
 
   bool getAnswer() {
-    return _questionList.elementAt(nextQuestion()).answerOfQuestion;
+    return _questionList.elementAt(_questionNumber).answerOfQuestion;
   }
 
-  int nextQuestion() {
-    if (questionNumber < _questionList.length - 1) {
-      return questionNumber++;
-    } else {
-      return 1;
+  void nextQuestion() {
+    if (_questionNumber < _questionList.length - 1) {
+      _questionNumber++;
     }
   }
 

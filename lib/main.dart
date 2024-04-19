@@ -32,6 +32,32 @@ class _QuizPageState extends State<QuizPage> {
   bool correctAnswer = false;
   List<Icon> markSign = [];
 
+  //TODO: Make function
+
+  void checkAnswer(bool userEnteredAnswer) {
+    correctAnswer = quizBrain.getAnswer();
+
+    setState(() {
+      if (userEnteredAnswer == correctAnswer) {
+        markSign.add(
+          const Icon(
+            Icons.check,
+            color: Colors.green,
+          ),
+        );
+        quizBrain.nextQuestion();
+      } else {
+        markSign.add(
+          const Icon(
+            Icons.close_rounded,
+            color: Colors.red,
+          ),
+        );
+        quizBrain.nextQuestion();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -69,33 +95,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                correctAnswer = quizBrain.getAnswer();
-
-                if (correctAnswer == true) {
-                  quizBrain.nextQuestion();
-                  setState(
-                    () {
-                      markSign.add(
-                        const Icon(
-                          Icons.check,
-                          color: Colors.green,
-                        ),
-                      );
-                    },
-                  );
-                } else {
-                  quizBrain.nextQuestion();
-                  setState(
-                    () {
-                      markSign.add(
-                        const Icon(
-                          Icons.close_rounded,
-                          color: Colors.red,
-                        ),
-                      );
-                    },
-                  );
-                }
+                checkAnswer(true);
               },
             ),
           ),
@@ -114,34 +114,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
-
-                correctAnswer = quizBrain.getAnswer();
-
-                if (correctAnswer == false) {
-                  quizBrain.nextQuestion();
-                  setState(
-                    () {
-                      markSign.add(
-                        const Icon(
-                          Icons.check,
-                          color: Colors.green,
-                        ),
-                      );
-                    },
-                  );
-                } else {
-                  quizBrain.nextQuestion();
-                  setState(
-                    () {
-                      markSign.add(
-                        const Icon(
-                          Icons.close_rounded,
-                          color: Colors.red,
-                        ),
-                      );
-                    },
-                  );
-                }
+                checkAnswer(false);
               },
             ),
           ),

@@ -1,5 +1,5 @@
 name: flutter_qulizzler_app
-description: "A new Flutter project."
+description: "A simple app the displays a questions and user have to answer if it is true or false."
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 

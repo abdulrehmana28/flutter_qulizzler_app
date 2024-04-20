@@ -1,15 +1,14 @@
 # flutter_qulizzler_app
 
-A new Flutter project.
+A simple app the displays questions and user have to answer if it is true or false.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Package used: rflutter_alert 2.0.7
 
-A few resources to get you started if this is your first Flutter project:
+- [Package link](https://pub.dev/packages/rflutter_alert)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- ![Screen Short](doc_image/screenshort.png)
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,

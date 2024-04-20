@@ -17,7 +17,19 @@ class QuizBank {
     }
   }
 
-  List<Question> _questionList = [
+  void resetQuestions() {
+    _questionNumber = 0;
+  }
+
+  bool isFinishQuestion() {
+    if (_questionNumber == _questionList.length - 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  final List<Question> _questionList = [
     Question(
         questionText: 'Some cats are actually allergic to humans',
         answerOfQuestion: true),

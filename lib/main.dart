@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'quizbank.dart';
 
@@ -34,11 +35,25 @@ class _QuizPageState extends State<QuizPage> {
 
   //TODO: Make function
 
+  void alertBox() {
+    Alert(
+            context: context,
+            type: AlertType.info,
+            title: 'Quiz Finished',
+            desc: 'Great Work')
+        .show();
+  }
+
   void checkAnswer(bool userEnteredAnswer) {
     correctAnswer = quizBrain.getAnswer();
 
     setState(() {
-      if (userEnteredAnswer == correctAnswer) {
+      if (quizBrain.isFinishQuestion() == true) {
+        alertBox();
+        quizBrain.resetQuestions();
+        markSign = [];
+        //-------------Mark sign logic-------------
+      } else if (userEnteredAnswer == correctAnswer) {
         markSign.add(
           const Icon(
             Icons.check,
